@@ -11,7 +11,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 namespace NotesAPI.Controllers
 {
     [ApiController]
-    [Route("api/auth")]
+    [Route("api/notes")]
     [Authorize]
 
     public class NotesController : ControllerBase
@@ -27,10 +27,10 @@ namespace NotesAPI.Controllers
 
         private int CurrentUserId => int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NoteDto>>> GetNotes()
+        public async Task<ActionResult<IEnumerable<NoteDisplayDTO>>> GetNotes()
         {
             var notes = await unitOfwork.Notes.GetActiveNoteAsync(CurrentUserId);
-            var notesDto = mapper.Map<IEnumerable<NoteDto>>(notes);
+            var notesDto = mapper.Map<IEnumerable<NoteDisplayDTO>>(notes);
             return Ok(notesDto);
         }
 

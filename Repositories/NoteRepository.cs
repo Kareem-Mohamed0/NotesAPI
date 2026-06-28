@@ -13,7 +13,7 @@ namespace NotesAPI.Repositories
         public async Task<IEnumerable<Note>> GetActiveNoteAsync(int userId)
         {
             return await dbset
-                .Where(n => !n.IsArchived && n.UserId == userId)
+                .Where(n => n.UserId == userId)
                 .OrderByDescending(n=> n.IsPinned)
                 .ThenByDescending(n=> n.UpdatedAt)
                 .ToListAsync();

@@ -69,7 +69,7 @@ namespace NotesAPI
             }
 
             app.UseHttpsRedirection();
-            app.UseCors();
+            app.UseCors("AllowAngular");
             app.UseAuthentication();
             app.UseAuthorization();
 

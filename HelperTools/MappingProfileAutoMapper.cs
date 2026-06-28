@@ -9,6 +9,7 @@ namespace NotesAPI.HelperTools
         public MappingProfileAutoMapper()
         {
             CreateMap<Note, NoteDto>().ReverseMap();
+            CreateMap<Note, NoteDisplayDTO>().ReverseMap();
         }
     }
 }
